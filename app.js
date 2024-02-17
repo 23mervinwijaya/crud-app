@@ -18,15 +18,34 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 app.use(express.json());
 
 
-// get data from database
+// get method for data from database
 app.get('/',async(req,res)=>{
     const employeeDatas = await db('data_pegawai').select('*').orderBy('id','asc');
     const employeesData = JSON.stringify(employeeDatas);
     const employeeData = JSON.parse(employeesData);
+
+
     res.render('index',{
         layout : './layouts/main-layout',
         title : 'Data Pegawai',
-        employeeData,
+        employeeData
+    })
+
+})
+
+// detail page of Employee Data
+app.get('/:id',async(req,res)=>{
+    const id = req.params.id;
+    console.log(id)
+    const employeeDatas = await db('data_pegawai').select('*').where('id',id).first();
+    const employeesData = JSON.stringify(employeeDatas);
+    const employeeData = JSON.parse(employeesData);
+
+
+    res.render('detail',{
+        layout : './layouts/main-layout',
+        title : `Data Pegawai : ${employeeData.nama_pegawai}`,
+        employeeData
     })
 
 })

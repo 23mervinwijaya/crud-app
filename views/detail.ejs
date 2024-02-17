@@ -1,0 +1,18 @@
+<div class="container mt-3">
+    <% if (!employeeData) { %>
+        <div class="alert alert-danger" role="alert">
+           Contact who you requested ain't available <br>
+           <a href="/" class="alert-link">Please back to Homepage</a>.
+          </div>
+    <% } else { %>
+        <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            
+          <h5 class="card-title"><%= employeeData.nama_pegawai %> </h5>
+          <p class="card-text"><%= employeeData.job_level %></p>
+          <p class="card-text"><%= employeeData.tanggal_lahir %></p>
+          <a href="/" class="btn btn-primary">&laquo; Go Back</a>
+        </div>
+      </div>
+    <% } %>
+    </div>
