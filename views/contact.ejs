@@ -1,0 +1,34 @@
+<h1 class="text-center">Daftar Pegawai</h1>
+<table class="table table-striped mt-3">
+    <thead>
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">Nama</th>
+        <th scope="col">Jabatan</th>
+        <th scope="col">Tanggal Menjabat</th>
+        <th scope="col">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (employeeData===0) { %>
+         <tr>
+          <td colspan="5">
+            <div class="alert alert-danger" role="alert">
+              <b>Contact hasn't been filled</b>
+            </div>
+          </td>
+         </tr>
+      <% } %>
+      <% employeeData.forEach((data,i) => { i++%>
+        <tr>
+          <td><%=data.id%></td>
+          <td><%=data.nama_pegawai %></td>
+          <td><%=data.job_level %></td>
+          <td><%=data.tanggal_lahir %></td>
+          <td><a href="/contact/<%=data.id%>" class="badge badge-success"><i class="bi bi-info-circle"> </i>detail</a></td>
+        </tr>
+      <% }) %>
+      <a href="/contact/add">
+      <button type="button" class="btn btn-primary">Tambahkan Data</button></a>
+    </tbody>
+  </table>
